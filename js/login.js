@@ -30,8 +30,9 @@ const loginForm = document.getElementById("loginForm");
 loginForm.addEventListener("submit", async (event) => {
 
     event.preventDefault();
-    errorMessage.textContent = "";
     const errorMessage = document.getElementById("errorMessage");
+    errorMessage.textContent = "";
+
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -69,7 +70,7 @@ loginForm.addEventListener("submit", async (event) => {
             return;
         }
 
-        const token = await response.text();
+        const token = JSON.parse(await response.text());
 
 
         localStorage.setItem("token", token);
