@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <title>login to GraphQL</title>
+        <link rel="stylesheet" href="../styles/login.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    </head>
+
+    <body>
+       <main class="container">
+
+            <div class="logo">
+                <img src="../assets/images/Logo.png" alt="GraphQL Logo">
+            </div>
+
+            <div  class="header">
+               <h1>GraphQL Profile</h1> 
+               <h2>Reboot 01 Student Dashboard</h2>
+            </div>
+
+            <div class="login-card">
+                <div class="Welcome">
+                    <h3>Welcome Back</h3>
+                    <p>Sign in to access your student profile</p>
+                </div>
+
+                <form id="loginForm" class="login-form">
+                    <div>
+                        <label>Username or Email</label>
+                        <div class="input-box">
+                            <i  class="fa-regular fa-user"></i>
+                            <input id="username" type="text" placeholder="Enter your username or email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label>Password</label>
+                        <div class="input-box">
+                            <i class="fa-solid fa-lock"></i>
+                            <input id="password" type="password" placeholder="Enter your password">
+                            <i  class="fa-regular fa-eye" id="togglePassword"></i>
+                        </div>
+                    </div>
+
+                    <p id="errorMessage"></p>
+
+                    <button type="submit" id="loginBtn">Sign In</button>
+                    
+                </form>
+                <div class="or-section">
+                    <h3>OR</h3>
+                </div>
+
+                <div class="login-info">
+                    <p>You can login with your Reboot 01</p>
+                    <p class="login-info-username-password">username or email</p>
+                </div>
+            </div>
+
+            <div class="security-note">
+                <i class="fa-solid fa-shield-halved"></i>
+                <p>Your data is secure and private</p>
+            </div>
+
+            <div class="footer">
+                <p>© Reboot 01 . GraphQL Profile Dashboard</p>
+            </div>
+        </main> 
+        
+        <script src="../js/login.js"></script>
+    </body>
+</html>
