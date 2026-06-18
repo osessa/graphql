@@ -42,6 +42,11 @@ async function getUserData() {
                         type
                         amount
                     }
+
+                    progress {
+                        grade
+                        path
+                    }
                 }
                 `
             })
@@ -49,6 +54,73 @@ async function getUserData() {
     );
 
     const data = await response.json();
+
+    console.log(data.data.progress);
+
+    const projectProgress = data.data.progress.filter(project => {
+
+        return project.path.startsWith("/bahrain/bh-module/")
+            && !project.path.includes("/piscine-js")
+            && !project.path.includes("/checkpoint");
+    });
+
+    const uniqueProjects = [
+        ...new Set(
+            projectProgress.map(project => project.path)
+        )
+    ];
+
+    console.log(uniqueProjects);
+    console.log("MAIN PROJECTS:", uniqueProjects.length);
+    
+    const passedProjects = projectProgress
+        .filter(project => project.grade > 1)
+        .length;
+
+    const failedProjects = projectProgress
+        .filter(project => project.grade < 1)
+        .length;
+
+    console.log("PASSED:", passedProjects);
+    console.log("FAILED:", failedProjects);
+
+    new Chart(
+        document.getElementById("projectChart"),
+        {
+            type: "doughnut",
+
+            data: {
+                labels: ["Passed", "Failed"],
+
+                datasets: [
+                    {
+                        data: [
+                            passedProjects,
+                            failedProjects
+                        ],
+
+                        backgroundColor: [
+                            "#22c55e",
+                            "#ef4444"
+                        ]
+                    }
+                ]
+            },
+
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+
+                layout: {
+                    padding: {
+                        bottom: 40
+                    }
+                }
+            }
+        }
+    );
+
+    console.log(projectProgress);
 
     const xpTransactions = data.data.xp;
 
@@ -112,6 +184,12 @@ async function getUserData() {
                 responsive: true,
 
                 maintainAspectRatio: false,
+
+                layout: {
+                    padding: {
+                        bottom: 20
+                    }
+                },
 
                 scales: {
                     x: {

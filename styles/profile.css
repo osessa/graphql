@@ -17,8 +17,19 @@ body {
 }
 
 .sidebar {
-    width:220px;
+    width: 220px;
     background-color: #111827;
+}
+
+.content {
+    flex: 1;
+
+     display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 30px;
+    
 }
 
 .welcome-section {
@@ -34,54 +45,56 @@ body {
     color: #94a3b8;
 }
 
-.content {
-    flex: 1;
-    padding: 30px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.stats-cards{
+.stats-cards {
     display: flex;
     gap: 20px;
+}
 
+.basic-information,
+.xp-card,
+.audit-card {
     flex: 1;
 }
 
-.basic-information, .xp-card, .audit-card{
-    flex: 1;
-}
 .charts {
     display: flex;
     gap: 20px;
-    flex-direction: row;
-    flex: 2;
-    min-height: 400px;
+
+    height: 450px;
 }
 
 .line-xp-chart {
     flex: 2;
+
+   display: flex;
+    flex-direction: column;
+
     min-width: 0;
+    overflow: hidden;
+    
 }
 
-#xpChart {
+.pass-fail-chart {
     flex: 1;
-    padding-bottom: 20px;
+
+     display: flex;
+    flex-direction: column;
+
+    min-width: 250px;
+    overflow: hidden;
+   
 }
 
-.line-xp-chart h3 {
+.line-xp-chart h3,
+.pass-fail-chart h3 {
     margin-bottom: 15px;
 }
 
-
-
-.pass-fail-chart{
-    flex: 1;
-    min-width: 250px;
+#xpChart,
+#projectChart {
+    width: 100% !important;
+    height: 100% !important;
 }
-
 
 .basic-information,
 .xp-card,
