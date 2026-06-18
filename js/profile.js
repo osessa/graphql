@@ -66,8 +66,65 @@ async function getUserData() {
         };
     });
 
+    const chartLabels = xpProgress.map(item =>
+        new Date(item.date).toLocaleDateString(
+            "en-US",
+            {
+                month: "short",
+                year: "numeric"
+            }
+        )
+    );
+
+    console.log(chartLabels.length);
+
     console.log(xpProgress.slice(0, 10));
 
+    const chartData = xpProgress.map(item => item.xp);
+
+    new Chart(
+        document.getElementById("xpChart"),
+        {
+            type: "line",
+
+            data: {
+                labels: chartLabels,
+
+                datasets: [
+                    {
+                        label: "Total XP",
+
+                        data: chartData,
+
+                        borderColor: "#8b5cf6",
+
+                        backgroundColor:
+                            "rgba(139,92,246,0.2)",
+
+                        tension: 0.3,
+
+                        fill: true
+                    }
+                ]
+            },
+
+            options: {
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+                    x: {
+                        ticks: {
+                            maxTicksLimit: 10
+                        }
+                    }
+                }
+            }
+        }
+    );
+
+    
     console.log(data.data.xp[0]);
 
     const totalXP = data.data.xp.reduce(

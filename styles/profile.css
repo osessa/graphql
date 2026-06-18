@@ -62,6 +62,13 @@ body {
 
 .line-xp-chart {
     flex: 2;
+    position: relative;
+    min-height: 350px;
+}
+
+#xpChart {
+    width: 100% !important;
+    height: 100% !important;
 }
 
 .pass-fail-chart{
