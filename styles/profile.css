@@ -53,22 +53,21 @@ body {
 .basic-information, .xp-card, .audit-card{
     flex: 1;
 }
-.charts{
+.charts {
     display: flex;
     gap: 20px;
 
     flex: 2;
+    min-height: 400px;
 }
 
 .line-xp-chart {
     flex: 2;
-    position: relative;
-    min-height: 350px;
+    overflow: hidden;
 }
 
 #xpChart {
-    width: 100% !important;
-    height: 100% !important;
+   flex: 1;
 }
 
 .pass-fail-chart{
