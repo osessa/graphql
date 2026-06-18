@@ -56,22 +56,30 @@ body {
 .charts {
     display: flex;
     gap: 20px;
-
+    flex-direction: row;
     flex: 2;
     min-height: 400px;
 }
 
 .line-xp-chart {
     flex: 2;
-    overflow: hidden;
+    min-width: 0;
 }
 
 #xpChart {
-   flex: 1;
+    flex: 1;
+    padding-bottom: 20px;
 }
+
+.line-xp-chart h3 {
+    margin-bottom: 15px;
+}
+
+
 
 .pass-fail-chart{
     flex: 1;
+    min-width: 250px;
 }
 
 
