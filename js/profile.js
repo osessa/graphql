@@ -26,6 +26,22 @@ async function getUserData() {
                         id
                         login
                     }
+
+                    xp: transaction(
+                        where: { type: { _eq: "xp" } }
+                        order_by: { createdAt: asc }
+                    ) {
+                        amount
+                        path
+                        createdAt
+                    }
+
+                    audits: transaction(
+                        where: { type: { _in: ["up", "down"] } }
+                    ) {
+                        type
+                        amount
+                    }
                 }
                 `
             })
@@ -34,13 +50,79 @@ async function getUserData() {
 
     const data = await response.json();
 
+    const xpTransactions = data.data.xp;
+
+    console.log(xpTransactions.length);
+
+    let cumulativeXP = 0;
+
+    const xpProgress = xpTransactions.map(transaction => {
+
+        cumulativeXP += transaction.amount;
+
+        return {
+            date: transaction.createdAt,
+            xp: cumulativeXP
+        };
+    });
+
+    console.log(xpProgress.slice(0, 10));
+
+    console.log(data.data.xp[0]);
+
+    const totalXP = data.data.xp.reduce(
+        (sum, transaction) => sum + transaction.amount,
+        0
+    );
+    document.getElementById("totalXP").textContent =
+        totalXP.toLocaleString();
+
+    const auditTransactions = data.data.audits;
+
+    const totalUp = auditTransactions 
+        .filter(t => t.type === "up")
+        .reduce((sum, t) => sum + t.amount, 0);
+
+    const totalDown = auditTransactions 
+        .filter(t => t.type === "down")
+        .reduce((sum, t) => sum + t.amount, 0);
+
+    const auditRatio = (totalUp / totalDown).toFixed(2);
+
+    console.log("UP:", totalUp);
+    console.log("DOWN:", totalDown);
+    console.log("RATIO:", auditRatio);
+
+
+        
+
+
+    console.log(JSON.stringify(data, null, 2));
+
     const user = data.data.user[0];
 
     document.getElementById("userId").textContent = user.id;
         
 
-    document.getElementById("userLogin").textContent = user.login;
+    document.getElementById("userName").textContent = user.login;
+
+    document.getElementById("welcomeUsername").textContent = user.login;
+    
+    document.getElementById("auditRatio").textContent = auditRatio;
+
+    document.getElementById("totalUp").textContent = totalUp.toLocaleString();
+
+    document.getElementById("totalDown").textContent = totalDown.toLocaleString();
         
+   
+    document.getElementById("logoutBtn")
+        .addEventListener("click", () => {
+
+            localStorage.removeItem("token");
+
+            window.location.href = "index.html";
+
+        });
 }
 
 getUserData();

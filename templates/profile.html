@@ -3,26 +3,86 @@
 
 <head>
     <title>Profile</title>
+    <link rel="stylesheet" href="../styles/profile.css">
 </head>
 
 <body>
 
-    <div class="profile-card">
-    
-        <h2>Student Information</h2>
-    
-        <p>
-            User ID:
-            <span id="userId"></span>
-        </p>
-    
-        <p>
-            Username:
-            <span id="userLogin"></span>
-        </p>
-    
+    <div class="dashboard">
+        <aside class="sidebar">
+
+            <button id="logoutBtn">Logout</button>
+        </aside>
+
+        
+
+        <main class="content">
+
+            <section class="welcome-section">
+                <div class="welcome-text">
+                    <h1>
+                        Welcome back,
+                        <span id="welcomeUsername">Username</span> 
+                    </h1>
+                
+                    <p>
+                        Here is your overview and statistics.
+                    </p>
+                </div>
+            </section>
+
+            <section class="stats-cards">
+                <div class="basic-information">
+                    <h3>Basic Information</h3>
+
+                    <p>
+                        User ID:
+                        <span id="userId"></span>
+                    </p>
+
+                    <p>
+                        User Name:
+                        <span id="userName"></span>
+                    </p>
+                </div>
+
+                <div class="xp-card">
+                    
+                    <h3>XP Information</h3>
+
+                    <p>Total XP</p>
+
+                    <h1 id="totalXP"></h1>
+                </div>
+
+                <div class="audit-card">
+                    <h3>Audit Information</h3>
+                    
+                    <p>Audit Ratio</p>
+                    <h1 id="auditRatio"></h1>
+                    
+                    <p>Total Up</p>
+                    <span id="totalUp"></span>
+                    
+                    <p>Total Down</p>
+                    <span id="totalDown"></span>
+                </div>
+            </section>
+
+            <section class="charts">
+
+                <div class="line-xp-chart">
+                    <div class="line-xp-chart">
+                        <canvas id="xpChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="pass-fail-chart">pass-fail-chart</div>
+            </section>
+        </main>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/profile.js"></script>
 
 </body>
