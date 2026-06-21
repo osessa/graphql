@@ -49,6 +49,13 @@ async function getUserData() {
                         grade
                         path
                     }
+
+                    levels: transaction(
+                        where: { type: { _eq: "level" } }
+                    ) {
+                        amount
+                        createdAt
+                    }
                 }
                 `
             })
@@ -57,6 +64,10 @@ async function getUserData() {
 
     const data = await response.json();
 
+    const currentLevel =
+        data.data.levels[data.data.levels.length - 1].amount;
+
+    console.log("LEVEL:", currentLevel);
 
     console.log(data.data.progress);
 
@@ -215,6 +226,9 @@ async function getUserData() {
     document.getElementById("totalXP").textContent =
         totalXP.toLocaleString();
 
+    document.getElementById("userLevel").textContent =
+        currentLevel;
+        
     const auditTransactions = data.data.audits;
 
     const totalUp = auditTransactions 
@@ -239,12 +253,44 @@ async function getUserData() {
 
     const user = data.data.user[0];
 
+    console.log(data.data.user[0]);
+
     console.log("EMAIL:", user.email);
     console.log("CREATED AT:", user.createdAt);
     console.log(user);
 
+    document.getElementById("profileName").textContent =
+        user.login;
+
+    document.getElementById("profileUsername").textContent =
+        "@" + user.login;
+
+    document.getElementById("profileId").textContent =
+        user.id;
+
+    document.getElementById("profileLogin").textContent =
+        user.login;
+
+    document.getElementById("profileEmail").textContent =
+        user.email;
+
+    document.getElementById("profileCreatedAt").textContent =
+        new Date(user.createdAt).toLocaleDateString(
+            "en-GB",
+            {
+                day: "numeric",
+                month: "short",
+                year: "numeric"
+            }
+        );
    
-        
+
+
+    document.getElementById("profileId").textContent = user.id;
+
+    document.getElementById("profileLogin").textContent = user.login;
+
+    document.getElementById("profileEmail").textContent = user.email;
 
     
 
@@ -315,3 +361,4 @@ profileBtn.addEventListener("click", () => {
     profileBtn.classList.add("active");
     dashboardBtn.classList.remove("active");
 });
+

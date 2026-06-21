@@ -64,23 +64,73 @@
                     <div class="xp-card">
                         
                         <h3>XP Information</h3>
-
-                        <p>Total XP</p>
-
-                        <h1 id="totalXP"></h1>
+                        
+                        <div class="xp-content">
+                        
+                            <div class="xp-circle">
+                                XP
+                            </div>
+                        
+                            <div class="xp-details">
+                        
+                                <div>
+                                    <p>Total XP</p>
+                                    <h1 id="totalXP"></h1>
+                                </div>
+                                
+                                <div class="divider"></div>
+                                
+                                <div>
+                                    <p>Level</p>
+                                    <h1 id="userLevel"></h1>
+                                </div>
+                        
+                            </div>
+                        
+                        </div>
                     </div>
 
                     <div class="audit-card">
+                    
                         <h3>Audit Information</h3>
-                        
-                        <p>Audit Ratio</p>
-                        <h1 id="auditRatio"></h1>
-                        
-                        <p>Total Up</p>
-                        <span id="totalUp"></span>
-                        
-                        <p>Total Down</p>
-                        <span id="totalDown"></span>
+                    
+                        <div class="audit-content">
+                    
+                            <div class="audit-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24">
+                                
+                                    <rect x="3" y="11" width="4" height="9" fill="#3b82f6" />
+                                    <rect x="10" y="8" width="4" height="12" fill="#3b82f6" />
+                                    <rect x="17" y="4" width="4" height="16" fill="#3b82f6" />
+                                
+                                </svg>
+                            </div>
+                    
+                            <div class="audit-details">
+                            
+                                <div class="audit-block">
+                                    <p>Audit Ratio</p>
+                                    <h1 id="auditRatio"></h1>
+                                </div>
+                            
+                                <div class="stats-divider"></div>
+                            
+                                <div class="audit-block">
+                                    <p>Total Up</p>
+                                    <h2 id="totalUp"></h2>
+                                </div>
+                            
+                                <div class="stats-divider"></div>
+                            
+                                <div class="audit-block">
+                                    <p>Total Down</p>
+                                    <h2 id="totalDown"></h2>
+                                </div>
+                            
+                            </div>
+                    
+                        </div>
+                    
                     </div>
                 </section>
 
@@ -100,37 +150,47 @@
 
 
             <!-- Profile Section -->
-            <section id="profileSection">
+            <section id="profileSection" style="display:none;">
             
-                <h1>Profile</h1>
+                <div class="profile-banner">
+            
+                    <div class="profile-overlay">
+            
+                        <div class="avatar">
+                            O
+                        </div>
+            
+                        <div class="profile-header-info">
+                            <h1 id="profileName">osessa</h1>
+                            <p id="profileUsername">@osessa</p>
+                        </div>
+            
+                    </div>
+            
+                </div>
             
                 <div class="profile-card">
             
-                    <div class="profile-avatar">
-                        O
+                    <h2>Personal Information</h2>
+            
+                    <div class="info-row">
+                        <span>User ID</span>
+                        <span id="profileId"></span>
                     </div>
             
-                    <h2 id="profileUsername"></h2>
+                    <div class="info-row">
+                        <span>Username</span>
+                        <span id="profileLogin"></span>
+                    </div>
             
-                    <p id="profileEmail"></p>
+                    <div class="info-row">
+                        <span>Email</span>
+                        <span id="profileEmail"></span>
+                    </div>
             
-                    <div class="profile-info">
-            
-                        <div class="info-row">
-                            <span>User ID</span>
-                            <span id="profileUserId"></span>
-                        </div>
-            
-                        <div class="info-row">
-                            <span>Username</span>
-                            <span id="profileLogin"></span>
-                        </div>
-            
-                        <div class="info-row">
-                            <span>Member Since</span>
-                            <span id="profileCreatedAt"></span>
-                        </div>
-            
+                    <div class="info-row">
+                        <span>Member Since</span>
+                        <span id="profileCreatedAt"></span>
                     </div>
             
                 </div>
