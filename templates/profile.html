@@ -11,75 +11,130 @@
     <div class="dashboard">
         <aside class="sidebar">
 
-            <button id="logoutBtn">Logout</button>
+            <div class="sidebar-logo">
+                <h1>
+                    REBOOT
+                    <span>01</span>
+                </h1>
+            
+                <p>STUDENT DASHBOARD</p>
+            </div>
+            
+            <nav class="sidebar-menu">
+            
+                <button class="menu-item" id="profileBtn">
+                    Profile
+                </button>
+
+                <button class="menu-item active" id="dashboardBtn">
+                    Dashboard
+                </button>
+                
+            
+            </nav>
+            
+            <button id="logoutBtn" class="logout-btn">
+                <span>↪</span>
+                Logout
+            </button>
         </aside>
 
         
 
         <main class="content">
 
-            <section class="welcome-section">
-                <div class="welcome-text">
-                    <h1>
-                        Welcome back,
-                        <span id="welcomeUsername">Username</span> 
-                    </h1>
+            <!-- Dashboard Section -->
+            <section id="dashboardSection">
+                <section class="welcome-section">
+                    <div class="welcome-text">
+                        <h1>
+                            Welcome back,
+                            <span id="welcomeUsername">Username</span> 
+                        </h1>
+                    
+                        <p>
+                            Here is your overview and statistics.
+                        </p>
+                    </div>
+                </section>
+
+                <section class="stats-cards">
                 
-                    <p>
-                        Here is your overview and statistics.
-                    </p>
-                </div>
+
+                    <div class="xp-card">
+                        
+                        <h3>XP Information</h3>
+
+                        <p>Total XP</p>
+
+                        <h1 id="totalXP"></h1>
+                    </div>
+
+                    <div class="audit-card">
+                        <h3>Audit Information</h3>
+                        
+                        <p>Audit Ratio</p>
+                        <h1 id="auditRatio"></h1>
+                        
+                        <p>Total Up</p>
+                        <span id="totalUp"></span>
+                        
+                        <p>Total Down</p>
+                        <span id="totalDown"></span>
+                    </div>
+                </section>
+
+                <section class="charts">
+
+                    <div class="line-xp-chart">
+                        <h3>XP Progress Over Time</h3>
+                        <canvas id="xpChart"></canvas>
+                    </div>
+
+                    <div class="pass-fail-chart">
+                        <h3>Project Results</h3>
+                        <canvas id="projectChart"></canvas>
+                    </div>
+                </section>
             </section>
 
-            <section class="stats-cards">
-                <div class="basic-information">
-                    <h3>Basic Information</h3>
 
-                    <p>
-                        User ID:
-                        <span id="userId"></span>
-                    </p>
-
-                    <p>
-                        User Name:
-                        <span id="userName"></span>
-                    </p>
+            <!-- Profile Section -->
+            <section id="profileSection">
+            
+                <h1>Profile</h1>
+            
+                <div class="profile-card">
+            
+                    <div class="profile-avatar">
+                        O
+                    </div>
+            
+                    <h2 id="profileUsername"></h2>
+            
+                    <p id="profileEmail"></p>
+            
+                    <div class="profile-info">
+            
+                        <div class="info-row">
+                            <span>User ID</span>
+                            <span id="profileUserId"></span>
+                        </div>
+            
+                        <div class="info-row">
+                            <span>Username</span>
+                            <span id="profileLogin"></span>
+                        </div>
+            
+                        <div class="info-row">
+                            <span>Member Since</span>
+                            <span id="profileCreatedAt"></span>
+                        </div>
+            
+                    </div>
+            
                 </div>
-
-                <div class="xp-card">
-                    
-                    <h3>XP Information</h3>
-
-                    <p>Total XP</p>
-
-                    <h1 id="totalXP"></h1>
-                </div>
-
-                <div class="audit-card">
-                    <h3>Audit Information</h3>
-                    
-                    <p>Audit Ratio</p>
-                    <h1 id="auditRatio"></h1>
-                    
-                    <p>Total Up</p>
-                    <span id="totalUp"></span>
-                    
-                    <p>Total Down</p>
-                    <span id="totalDown"></span>
-                </div>
-            </section>
-
-            <section class="charts">
-
-                <div class="line-xp-chart">
-                    <h3>XP Progress Over Time</h3>
-                    <canvas id="xpChart"></canvas>
-                </div>
-
-                <div class="pass-fail-chart">
-                    <h3>Project Results</h3>
-                    <canvas id="projectChart"></canvas>
-                </div>
+            
             </section>
         </main>
     </div>

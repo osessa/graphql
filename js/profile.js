@@ -25,6 +25,8 @@ async function getUserData() {
                     user {
                         id
                         login
+                        email
+                        createdAt
                     }
 
                     xp: transaction(
@@ -54,6 +56,7 @@ async function getUserData() {
     );
 
     const data = await response.json();
+
 
     console.log(data.data.progress);
 
@@ -236,10 +239,14 @@ async function getUserData() {
 
     const user = data.data.user[0];
 
-    document.getElementById("userId").textContent = user.id;
+    console.log("EMAIL:", user.email);
+    console.log("CREATED AT:", user.createdAt);
+    console.log(user);
+
+   
         
 
-    document.getElementById("userName").textContent = user.login;
+    
 
     document.getElementById("welcomeUsername").textContent = user.login;
     
@@ -261,3 +268,50 @@ async function getUserData() {
 }
 
 getUserData();
+
+const dashboardBtn =
+    document.getElementById("dashboardBtn");
+
+const profileBtn =
+    document.getElementById("profileBtn");
+
+const dashboardSection =
+    document.getElementById("dashboardSection");
+
+const profileSection =
+    document.getElementById("profileSection");
+
+dashboardBtn.addEventListener("click", () => {
+
+    dashboardSection.style.display = "block";
+
+    profileSection.style.display = "none";
+
+});
+
+profileBtn.addEventListener("click", () => {
+
+    dashboardSection.style.display = "none";
+
+    profileSection.style.display = "block";
+
+});
+
+
+dashboardBtn.addEventListener("click", () => {
+
+    dashboardSection.style.display = "block";
+    profileSection.style.display = "none";
+
+    dashboardBtn.classList.add("active");
+    profileBtn.classList.remove("active");
+});
+
+profileBtn.addEventListener("click", () => {
+
+    dashboardSection.style.display = "none";
+    profileSection.style.display = "block";
+
+    profileBtn.classList.add("active");
+    dashboardBtn.classList.remove("active");
+});
