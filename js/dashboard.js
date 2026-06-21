@@ -53,8 +53,22 @@ async function loadDashboard() {
         }
     );
 
+
+
     const data = await response.json();
 
+    if (
+        !data.data ||
+        !data.data.user
+    ) {
+
+        localStorage.removeItem("token");
+
+        window.location.href = "index.html";
+
+        return;
+    }
+    
     // ================= USER INFORMATION =================
 
     const user =

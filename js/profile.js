@@ -30,8 +30,22 @@ async function loadProfile() {
         }
     );
 
+    
+
     const data = await response.json();
 
+    if (
+        !data.data ||
+        !data.data.user
+    ) {
+
+        localStorage.removeItem("token");
+
+        window.location.href = "index.html";
+
+        return;
+    }
+    
     const user =
         data.data.user[0];
 
