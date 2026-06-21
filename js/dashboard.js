@@ -47,6 +47,24 @@ async function loadDashboard() {
                         firstName
                         lastName
                     }
+
+                    {
+                        transaction(
+                            where: {
+                                type: {
+                                    _eq: "xp"
+                                }
+                            }
+                            limit: 1
+                        ) {
+                            amount
+
+                            user {
+                                id
+                                login
+                            }
+                        }
+                    }
                 }
                 `
             })
@@ -68,7 +86,7 @@ async function loadDashboard() {
 
         return;
     }
-    
+
     // ================= USER INFORMATION =================
 
     const user =
