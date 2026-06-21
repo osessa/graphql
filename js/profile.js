@@ -27,6 +27,8 @@ async function getUserData() {
                         login
                         email
                         createdAt
+                        firstName
+                        lastName
                     }
 
                     xp: transaction(
@@ -87,6 +89,49 @@ async function getUserData() {
     console.log(uniqueProjects);
     console.log("MAIN PROJECTS:", uniqueProjects.length);
     
+    const totalProjects = uniqueProjects.length;
+
+    const centerText = {
+        id: "centerText",
+
+        beforeDraw(chart) {
+
+            const { ctx } = chart;
+
+            const x =
+                chart.getDatasetMeta(0).data[0].x;
+
+            const y =
+                chart.getDatasetMeta(0).data[0].y;
+
+            ctx.save();
+
+            ctx.textAlign = "center";
+
+            ctx.fillStyle = "#ffffff";
+
+            ctx.font = "bold 42px Arial";
+
+            ctx.fillText(
+                totalProjects,
+                x,
+                y - 10
+            );
+
+            ctx.font = "16px Arial";
+
+            ctx.fillStyle = "#94a3b8";
+
+            ctx.fillText(
+                "Projects",
+                x,
+                y + 20
+            );
+
+            ctx.restore();
+        }
+    };
+
     const passedProjects = projectProgress
         .filter(project => project.grade > 1)
         .length;
@@ -114,9 +159,16 @@ async function getUserData() {
                         ],
 
                         backgroundColor: [
+                            "rgba(34,197,94,0.8)",
+                            "rgba(239,68,68,0.8)"
+                        ],
+
+                        borderColor: [
                             "#22c55e",
                             "#ef4444"
-                        ]
+                        ],
+
+                        borderWidth: 2
                     }
                 ]
             },
@@ -130,7 +182,14 @@ async function getUserData() {
                         bottom: 40
                     }
                 }
-            }
+                
+            },
+
+            plugins: [
+                centerText
+            ]
+
+            
         }
     );
 
@@ -189,7 +248,13 @@ async function getUserData() {
 
                         tension: 0.3,
 
-                        fill: true
+                        fill: true,
+
+                        borderWidth: 4,
+
+                        pointRadius: 0,
+
+                        pointHoverRadius: 6
                     }
                 ]
             },
@@ -253,6 +318,8 @@ async function getUserData() {
 
     const user = data.data.user[0];
 
+    const fullName = `${user.firstName} ${user.lastName}`;
+
     console.log(data.data.user[0]);
 
     console.log("EMAIL:", user.email);
@@ -260,7 +327,7 @@ async function getUserData() {
     console.log(user);
 
     document.getElementById("profileName").textContent =
-        user.login;
+        fullName;
 
     document.getElementById("profileUsername").textContent =
         "@" + user.login;
@@ -294,7 +361,7 @@ async function getUserData() {
 
     
 
-    document.getElementById("welcomeUsername").textContent = user.login;
+    document.getElementById("welcomeUsername").textContent = fullName;
     
     document.getElementById("auditRatio").textContent = auditRatio;
 
