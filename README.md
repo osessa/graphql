@@ -6,43 +6,49 @@ The application authenticates users through the Reboot01 API, retrieves student 
 
 ---
 
+## Live Demo
+
+**Website:** https://osessa.github.io/graphql/
+
+---
+
 ## Features
 
 ### Authentication
 
-- Secure login using Reboot01 credentials
-- JWT token authentication
-- Protected dashboard pages
-- Automatic logout when token is invalid or expired
-- Logout functionality
+* Secure login using Reboot01 credentials
+* JWT token authentication
+* Protected dashboard pages
+* Automatic logout when token is invalid or expired
+* Logout functionality
 
 ### Dashboard
 
-- Total XP display
-- Current Level display
-- Audit Ratio statistics
-- Total Audit Up and Audit Down
-- XP Progress Over Time chart
-- Project Results chart
+* Total XP display
+* Current Level display
+* Audit Ratio statistics
+* Total Audit Up and Total Audit Down
+* XP Progress Over Time (SVG Chart)
+* Project Results (SVG Donut Chart)
 
 ### Profile
 
-- Full Name
-- Username
-- User ID
-- Email Address
-- Member Since date
+* Full Name
+* Username
+* User ID
+* Email Address
+* Member Since Date
 
 ---
 
 ## Technologies Used
 
-- HTML
-- CSS
-- JavaScript 
-- GraphQL
-- Chart.js
-- JWT Authentication
+* HTML
+* CSS
+* JavaScript
+* GraphQL
+* SVG
+* JWT Authentication
 
 ---
 
@@ -51,12 +57,9 @@ The application authenticates users through the Reboot01 API, retrieves student 
 ```text
 project/
 │
-├── assets/
-│   └── images/
-│
-├── css/
-│   ├── login.css
-│   └── profile.css
+├── images/
+│   ├── Logo.png
+│   └── background.png
 │
 ├── js/
 │   ├── auth.js
@@ -65,10 +68,12 @@ project/
 │   ├── profile.js
 │   └── charts.js
 │
-├── pages/
-│   ├── index.html
-│   └── profile.html
+├── styles/
+│   ├── login.css
+│   └── profile.css
 │
+├── index.html
+├── profile.html
 └── README.md
 ```
 
@@ -107,11 +112,11 @@ Redirect To Login Page
 
 The dashboard retrieves:
 
-- User Information
-- XP Transactions
-- Audit Transactions
-- Level Information
-- Project Progress
+* User Information
+* XP Transactions
+* Audit Transactions
+* Level Information
+* Project Progress
 
 Example query:
 
@@ -132,13 +137,13 @@ Example query:
 
 ## Security Features
 
-- JWT-based authentication
-- Protected routes
-- Token validation
-- Automatic logout on invalid session
-- Input validation
-- HTTPS communication with API
-- No password storage
+* JWT-based authentication
+* Protected routes
+* Token validation
+* Automatic logout on invalid session
+* Input validation
+* HTTPS communication with API
+* No password storage
 
 ---
 
@@ -147,7 +152,7 @@ Example query:
 Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/osessa/graphql.git
 ```
 
 Open the project folder and start a local server.
@@ -162,10 +167,8 @@ Right Click -> Open with Live Server
 
 ## Author
 
-## Author
-
-**Osama Essa**  
-Gitea: `@osessa`
+**Osama Essa**
+GitHub: @osessa
+Gitea: @osessa
 
 Developed as part of the Reboot01 GraphQL project.
-
