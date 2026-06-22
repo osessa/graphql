@@ -48,23 +48,23 @@ async function loadDashboard() {
                         lastName
                     }
 
-                    {
-                        transaction(
-                            where: {
-                                type: {
-                                    _eq: "xp"
-                                }
-                            }
-                            limit: 1
-                        ) {
-                            amount
-
-                            user {
-                                id
-                                login
+                   
+                    transaction(
+                        where: {
+                            type: {
+                                _eq: "xp"
                             }
                         }
+                        limit: 1
+                    ) {
+                        amount
+
+                        user {
+                            id
+                            login
+                        }
                     }
+                   
                 }
                 `
             })
