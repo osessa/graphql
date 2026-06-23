@@ -32,10 +32,6 @@ async function loadDashboard() {
                         amount
                     }
 
-                    progress {
-                        grade
-                        path
-                    }
 
                     levels: transaction(
                         where: { type: { _eq: "level" } }
@@ -46,6 +42,7 @@ async function loadDashboard() {
                     user {
                         firstName
                         lastName
+                        auditRatio
                     }
 
                    
@@ -65,6 +62,15 @@ async function loadDashboard() {
                         }
                     }
                    
+                    progress {
+                        grade
+                        path
+
+                        object {
+                            type
+                            name
+                        }
+                    }
                 }
                 `
             })
@@ -74,6 +80,44 @@ async function loadDashboard() {
 
 
     const data = await response.json();
+
+    console.log(data.data.user[0]);
+
+    // ================= PROJECT INFORMATION =================
+
+    // Get only bh-module projects
+    const projects =
+        data.data.progress.filter(
+            project =>
+                project.object?.type === "project" &&
+                project.path.includes("/bh-module/")
+        );
+
+    // Unique projects (for donut center number)
+    const uniqueProjects =
+        [...new Map(
+            projects.map(project => [
+                project.path,
+                project
+            ])
+        ).values()];
+
+    // Total unique projects
+    const totalProjects =
+        uniqueProjects.length;
+
+    // Count all pass attempts
+    const passedProjects =
+        projects.filter(
+            project => project.grade >= 1
+        ).length;
+
+    // Count all fail attempts
+    const failedProjects =
+        projects.filter(
+            project => project.grade <= 0
+        ).length;
+
 
     if (
         !data.data ||
@@ -151,7 +195,7 @@ async function loadDashboard() {
             );
 
     const auditRatio =
-        (totalUp / totalDown).toFixed(2);
+        (totalUp / totalDown).toFixed(1);
 
     document.getElementById("auditRatio").textContent =
         auditRatio;
@@ -162,45 +206,7 @@ async function loadDashboard() {
     document.getElementById("totalDown").textContent =
         totalDown.toLocaleString();
 
-    // ================= PROJECT INFORMATION =================
-
-    const projectProgress =
-        data.data.progress.filter(project => {
-
-            return (
-                project.path.startsWith(
-                    "/bahrain/bh-module/"
-                ) &&
-                !project.path.includes(
-                    "/piscine-js"
-                ) &&
-                !project.path.includes(
-                    "/checkpoint"
-                )
-            );
-        });
-
-    const uniqueProjects = [
-        ...new Set(
-            projectProgress.map(
-                project => project.path
-            )
-        )
-    ];
-
-    const totalProjects =
-        uniqueProjects.length;
-
-    const passedProjects =
-        projectProgress.filter(
-            project => project.grade > 1
-        ).length;
-
-    const failedProjects =
-        projectProgress.filter(
-            project => project.grade < 1
-        ).length;
-
+    
     // ================= CHARTS =================
 
     createProjectChart(

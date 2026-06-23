@@ -10,10 +10,14 @@ function createProjectChart(
         passedProjects + failedProjects;
 
     const passedPercent =
-        (passedProjects / total) * 100;
+        total > 0
+            ? (passedProjects / total) * 100
+            : 0;
 
-    const failedPercent =
-        (failedProjects / total) * 100;
+    const radius = 90;
+
+    const circumference =
+        2 * Math.PI * radius;
 
     const svg = `
         <svg
@@ -40,7 +44,9 @@ function createProjectChart(
                 fill="none"
                 stroke="rgba(34,197,94,0.9)"
                 stroke-width="80"
-                stroke-dasharray="${passedPercent * 5.65} 565"
+                stroke-dasharray="${
+                    (passedPercent / 100) * circumference
+                    } ${circumference}"
                 transform="rotate(-90 130 130)"
             />
 
