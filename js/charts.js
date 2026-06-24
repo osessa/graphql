@@ -28,23 +28,12 @@ function createProjectChart(
 
             <!-- Failed Circle -->
             <circle
-                <!--center if circle in x-axis-->
-                    cx="130"
-
-                <!--center if circle in y-axis-->
-                    cy="130"
-
-                <!--radius-->
-                    r="90"
-
-                <!--no color inside the circle-->
-                    fill="none"
-
-                <!--color the border of the circle-->
-                    stroke="rgba(239,68,68,0.8)"
-                    
-                <!--border width of the circle-->
-                    stroke-width="80"
+                cx="130"
+                cy="130"
+                r="90"
+                fill="none"
+                stroke="rgba(239,68,68,0.8)"
+                stroke-width="80"
             />
 
             <!-- Passed Circle -->
@@ -70,7 +59,7 @@ function createProjectChart(
                 font-size="40"
                 font-weight="bold"
             >
-                ${totalProjects}
+                ${totalProjects-1}
             </text>
 
             <text
@@ -205,7 +194,7 @@ function createXPChart(xpTransactions) {
                 fill="#94a3b8"
                 font-size="17"
             >
-                ${value.toLocaleString()}
+                ${formatXP(value)}
             </text>
         `;
     }
@@ -213,7 +202,7 @@ function createXPChart(xpTransactions) {
     // Create month labels
     let monthLabels = "";
 
-    const labelCount = 10;
+    const labelCount = 6;
 
     for (
         let i = 0;
@@ -255,6 +244,16 @@ function createXPChart(xpTransactions) {
             </text>
         `;
     }
+
+    console.log(
+        "First Date:",
+        xpProgress[0].date
+    );
+
+    console.log(
+        "Last Date:",
+        xpProgress[xpProgress.length - 1].date
+    );
 
     const svg = `
         <svg

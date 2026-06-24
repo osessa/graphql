@@ -81,6 +81,7 @@ async function loadDashboard() {
 
     const data = await response.json();
 
+
     console.log(data.data.user[0]);
 
     // ================= PROJECT INFORMATION =================
@@ -115,7 +116,7 @@ async function loadDashboard() {
     // Count all fail attempts
     const failedProjects =
         projects.filter(
-            project => project.grade <= 0
+            project => project.grade === 0
         ).length;
 
 
@@ -154,15 +155,50 @@ async function loadDashboard() {
     const xpTransactions =
         data.data.xp;
 
+    const projectXP =
+        xpTransactions.filter(transaction => {
+
+            const path = transaction.path;
+
+            return (
+                path.includes("/bh-module/") &&
+                !path.includes("/checkpoint") &&
+                (
+                    !path.includes("/piscine-js/") ||
+                    path === "/bahrain/bh-module/piscine-js"
+                )
+            );
+        });
+    
     const totalXP =
-        xpTransactions.reduce(
+        projectXP.reduce(
             (sum, transaction) =>
                 sum + transaction.amount,
             0
         );
 
+    console.table(
+        projectXP.map(x => ({
+            amount: x.amount,
+            path: x.path
+        }))
+    );
+
+    console.table(
+        xpTransactions
+            .filter(x =>
+                x.path.includes("piscine-js")
+            )
+            .map(x => ({
+                amount: x.amount,
+                path: x.path
+            }))
+    );
+
+
+
     document.getElementById("totalXP").textContent =
-        totalXP.toLocaleString();
+        formatXP(totalXP);
 
     // ================= AUDIT INFORMATION =================
 
@@ -198,10 +234,10 @@ async function loadDashboard() {
         auditRatio;
 
     document.getElementById("totalUp").textContent =
-        totalUp.toLocaleString();
+        formatXP(totalUp);
 
     document.getElementById("totalDown").textContent =
-        totalDown.toLocaleString();
+        formatXP(totalDown);
 
     
     // ================= CHARTS =================
@@ -219,3 +255,14 @@ async function loadDashboard() {
 
 // Load dashboard data when page opens
 loadDashboard();
+
+function formatXP(value) {
+
+    const kb = value / 1000;
+
+    if (kb >= 1000) {
+        return `${(kb / 1000).toFixed(2)} MB`;
+    }
+
+    return `${Math.round(kb).toLocaleString()} KB`;
+}
