@@ -28,12 +28,23 @@ function createProjectChart(
 
             <!-- Failed Circle -->
             <circle
-                cx="130"
-                cy="130"
-                r="90"
-                fill="none"
-                stroke="rgba(239,68,68,0.8)"
-                stroke-width="80"
+                <!--center if circle in x-axis-->
+                    cx="130"
+
+                <!--center if circle in y-axis-->
+                    cy="130"
+
+                <!--radius-->
+                    r="90"
+
+                <!--no color inside the circle-->
+                    fill="none"
+
+                <!--color the border of the circle-->
+                    stroke="rgba(239,68,68,0.8)"
+                    
+                <!--border width of the circle-->
+                    stroke-width="80"
             />
 
             <!-- Passed Circle -->

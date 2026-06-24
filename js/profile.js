@@ -34,10 +34,7 @@ async function loadProfile() {
 
     const data = await response.json();
 
-    if (
-        !data.data ||
-        !data.data.user
-    ) {
+    if ( !data.data ||!data.data.user) {
 
         localStorage.removeItem("token");
 

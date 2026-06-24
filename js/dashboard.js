@@ -119,10 +119,7 @@ async function loadDashboard() {
         ).length;
 
 
-    if (
-        !data.data ||
-        !data.data.user
-    ) {
+    if ( !data.data || !data.data.user ) {
 
         localStorage.removeItem("token");
 
